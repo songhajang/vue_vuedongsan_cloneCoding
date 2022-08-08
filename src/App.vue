@@ -8,9 +8,10 @@
 
     <main-discount />
 
-    <details-modal :datas="datas" :useClick="useClick" :modal="modal"/>
+    <details-modal @ColseModal="modal = false" :datas="datas" :useClick="useClick" :modal="modal"/>
 
-    <room-list  :datas="datas[key]" v-for="(data, key) in datas" :key="key"/>
+    <room-list @openModal="modal = true; useClick = $event"  :datas="datas[key]" v-for="(data, key) in datas" :key="key"/>
+
 
   </div>
 </template>

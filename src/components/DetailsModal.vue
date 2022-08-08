@@ -5,7 +5,7 @@
         <h4>{{datas[useClick].title}}</h4>
         <p>{{datas[useClick].content}}</p>
         <p>{{datas[useClick].price}} 원</p>
-        <!-- <button @click="modal = false">닫기</button> -->
+        <button @click="$emit('ColseModal')">닫기</button>
       </div>
     </div>
 </template>
