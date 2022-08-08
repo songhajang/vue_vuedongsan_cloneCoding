@@ -10,15 +10,17 @@
 
     <div class="black-bg" v-if="modal == true">
       <div class="white-bg">
-        <h4>상세페이지임</h4>
-        <p>상세페이지 내용잉</p>
+        <img :src="datas[useClick].image" alt="">
+        <h4>{{datas[useClick].title}}</h4>
+        <p>{{datas[useClick].content}}</p>
+        <p>{{datas[useClick].price}} 원</p>
         <button @click="modal = false">닫기</button>
       </div>
     </div>
 
     <div v-for="(data, key) in datas" :key="key">
       <img :src="data.image" class="room-img">
-      <h4 @click="modal = true">{{data.title}}</h4>
+      <h4 @click="modal = true; useClick = key ">{{data.title}}</h4>
       <p>{{data.price}} 원</p>
     </div>
 
@@ -33,10 +35,11 @@ export default {
   name: 'App',
   data() {
     return {
-      datas : dataList,
+        datas : dataList,
         modal : false,
         menu : ['Home', 'Shop', 'About'],
         신고수 : [0,0,0],
+        useClick : 0,
     }
   },
   methods: {
