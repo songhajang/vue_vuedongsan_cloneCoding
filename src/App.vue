@@ -1,19 +1,20 @@
 <template>
   <div>
-    <img src="./assets/logo.png" alt="">
+    <!-- 메뉴바 -->
+    <div class="menu">
+      <!-- <a v-for="menuLi in 3" :key="menuLi">HOME</a> -->
+
+      <a v-for="(menuLi, idx) in menu" :key="idx">{{menuLi}}</a>
+
+    </div>
+
     <h1>{{logo}}</h1>
-    <div>
-      <h4 :style="color">{{products[0]}}</h4>
-      <p>{{price[0]}} 만원</p>
+
+    <div v-for="oneRomTyp in 3" :key="oneRomTyp">
+      <h4>{{products[oneRomTyp-1]}}</h4>
+      <p>{{price[oneRomTyp-1]}} 만원</p>
     </div>
-    <div>
-      <h4 :style="color">{{products[1]}}</h4>
-      <p>{{price[1]}} 만원</p>
-    </div>
-    <div>
-      <h4 :style="color">{{products[2]}}</h4>
-      <p>{{price[2]}} 만원</p>
-    </div>
+
   </div>
 </template>
 
@@ -24,7 +25,7 @@ export default {
   data() {
     return {
         logo : '원룸샵',
-        color : 'color : red;',
+        menu : ['Home', 'Shop', 'About'],
         products : ['역삼동원룸','청호동원룸','마포구원룸'],
         price : [60,70,80],
     }
@@ -41,6 +42,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.menu{
+  background: darkslateblue;
+  padding: 15px;
+  border-radius: 5px;
+}
+.menu a{
+  color : white;
+  padding: 10px;
 }
 </style>
