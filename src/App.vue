@@ -8,7 +8,8 @@
 
     <main-discount />
 
- 
+    <details-modal :datas="datas" :useClick="useClick" :modal="modal"/>
+
     <div v-for="(data, key) in datas" :key="key">
       <img :src="data.image" class="room-img">
       <h4 @click="modal = true; useClick = key ">{{data.title}}</h4>
@@ -22,6 +23,7 @@
 
 import  dataList from './components/oneroom.js';
 import MainDiscount from './components/MainDiscount.vue';
+import DetailsModal from './components/DetailsModal.vue';
 
 export default {
   name: 'App',
@@ -41,6 +43,7 @@ export default {
   },
   components: {
     MainDiscount,
+    DetailsModal,
 }
 }
 </script>
