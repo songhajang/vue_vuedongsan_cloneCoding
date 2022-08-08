@@ -10,11 +10,7 @@
 
     <details-modal :datas="datas" :useClick="useClick" :modal="modal"/>
 
-    <div v-for="(data, key) in datas" :key="key">
-      <img :src="data.image" class="room-img">
-      <h4 @click="modal = true; useClick = key ">{{data.title}}</h4>
-      <p>{{data.price}} 원</p>
-    </div>
+    <room-list  :datas="datas[key]" v-for="(data, key) in datas" :key="key"/>
 
   </div>
 </template>
@@ -24,6 +20,7 @@
 import  dataList from './components/oneroom.js';
 import MainDiscount from './components/MainDiscount.vue';
 import DetailsModal from './components/DetailsModal.vue';
+import RoomList from './components/OneRoomCard.vue' ;
 
 export default {
   name: 'App',
@@ -44,6 +41,7 @@ export default {
   components: {
     MainDiscount,
     DetailsModal,
+    RoomList,
 }
 }
 </script>
@@ -65,9 +63,5 @@ body{
 .menu a{
   color : white;
   padding: 10px;
-}
-.room-img{
-  width: 100%;
-  margin-top: 40px;
 }
 </style>
