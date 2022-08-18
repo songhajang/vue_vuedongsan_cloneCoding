@@ -4,7 +4,8 @@
         <img :src="datas[useClick].image" alt="" style="width: 100%">
         <h4>{{datas[useClick].title}}</h4>
         <p>{{datas[useClick].content}}</p>
-        <p>{{datas[useClick].price}} 원</p>
+        <input v-model="month">
+        <p>{{month}}개월 / {{datas[useClick].price * month}} 원</p>
         <button @click="$emit('ColseModal')">닫기</button>
       </div>
     </div>
@@ -12,6 +13,19 @@
 
 <script>
 export default {
+  data(){
+    return{
+      month : 1,
+    }
+  },
+  watch :{
+    month(value){
+      if(isNaN(value) == true){
+        alert('문자 입력 안됩니다~')
+        this.month = 1
+      }
+    }
+  },
     props:{
       modal : Boolean,
       datas : Object,
