@@ -1,5 +1,10 @@
 <template>
   <div>
+
+    <transition name="fade">
+      <details-modal @ColseModal="modal = false" :datas="datas" :useClick="useClick" :modal="modal"/>
+    </transition>
+
     <!-- 메뉴바 -->
     <div class="menu">
       <!-- <a v-for="menuLi in 3" :key="menuLi">HOME</a> -->
@@ -8,7 +13,6 @@
 
     <main-discount />
 
-    <details-modal @ColseModal="modal = false" :datas="datas" :useClick="useClick" :modal="modal"/>
 
     <room-list @openModal="modal = true; useClick = $event"  :datas="datas[key]" v-for="(data, key) in datas" :key="key"/>
 
@@ -48,6 +52,9 @@ export default {
 </script>
 
 <style>
+.fade-enter-from{ opacity: 0; }
+.fade-enter-active{ transition: all 0.5s; }
+.fade-enter-to{ opacity: 1; }
 *{
   cursor: pointer;
 }
