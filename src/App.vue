@@ -13,6 +13,11 @@
 
     <main-discount />
 
+    <button @click="priceMinSort">가격순 정렬</button>
+    <button @click="priceMaxSort">역가격순 정렬</button>
+    <button @click="ABCSort">가나다순 정렬</button>
+    <button @click="sortBack">되돌리기</button>
+
 
     <room-list @openModal="modal = true; useClick = $event"  :datas="datas[key]" v-for="(data, key) in datas" :key="key"/>
 
@@ -31,6 +36,7 @@ export default {
   name: 'App',
   data() {
     return {
+        originDatas : [...dataList],
         datas : dataList,
         modal : false,
         menu : ['Home', 'Shop', 'About'],
@@ -41,6 +47,42 @@ export default {
   methods: {
     increase(e){
       this.신고수[e] += 1;
+    },
+    priceMinSort(){
+      this.datas.sort(function(a,b){
+        return a.price - b.price
+      })
+    },
+    
+    priceMaxSort(){
+      this.datas.sort(function(a,b){
+        return b.price - a.price 
+      })
+    },
+
+    ABCSort(){
+      let arr = []
+      let datas = this.datas
+      datas.forEach( data => {
+        arr.push(data.title.split('')[0])
+      });
+      arr = arr.sort()
+      this.datas.sort(function(a){
+        console.log(arr)
+        arr.forEach(e =>{
+          console.log(e)
+          if(a.title.findIndex(e) == true){
+            return a.title
+          }
+        })
+      })
+
+      // this.datas.sort(function(a){
+        
+      // })
+    },
+    sortBack(){
+      this.datas = [...this.originDatas]
     },
   },
   components: {
