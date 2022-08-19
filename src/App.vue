@@ -11,7 +11,7 @@
       <a v-for="(menuLi, idx) in menu" :key="idx">{{menuLi}}</a>
     </div>
 
-    <main-discount />
+    <main-discount v-if="sale === true" :Val="amount"/>
 
     <button @click="priceMinSort">가격순 정렬</button>
     <button @click="priceMaxSort">역가격순 정렬</button>
@@ -42,6 +42,8 @@ export default {
         menu : ['Home', 'Shop', 'About'],
         신고수 : [0,0,0],
         useClick : 0,
+        sale : true,
+        amount : 20
     }
   },
   methods: {
@@ -89,6 +91,25 @@ export default {
     MainDiscount,
     DetailsModal,
     RoomList,
+},
+mounted(){
+  const a = setInterval(()=>{
+    console.log(this.amount --)
+    if( this.amount < 0){
+      setTimeout(()=>{
+        this.sale = false
+        stop()
+      })
+    }
+  },1000);
+
+    function stop(){
+      console.log('stop')
+      clearInterval(a)
+    }
+},
+update(){
+  
 }
 }
 </script>

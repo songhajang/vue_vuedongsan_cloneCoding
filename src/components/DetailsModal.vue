@@ -31,7 +31,13 @@ export default {
       datas : Object,
       useClick: Number,
 
+    },
+    updated(){
+      if(this.month == 2){
+        alert('하이')
+      }
     }
+
 }
 </script>
 
